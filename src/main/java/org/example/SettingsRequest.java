@@ -10,6 +10,11 @@ public class SettingsRequest {
     protected final String API_PREFIX = "/api";
 
     protected RequestSpecification getSpec() {
+        try {
+            Thread.sleep(500);                      //задержку пришлось поставить что бы исключить постоянную ошибку 429
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .setBaseUri(BASE_URI)
@@ -19,6 +24,4 @@ public class SettingsRequest {
                 .log(LogDetail.BODY)
                 .build();
     }
-
-
 }

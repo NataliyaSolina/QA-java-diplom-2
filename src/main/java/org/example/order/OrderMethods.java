@@ -35,6 +35,8 @@ public class OrderMethods extends SettingsRequest {
         response
                 .then()
                 .assertThat()
+                .statusCode(SC_OK)
+                .and()
                 .body("success", is(true))
                 .body("name", notNullValue())
                 .body("order.number", notNullValue());
@@ -80,6 +82,8 @@ public class OrderMethods extends SettingsRequest {
         response
                 .then()
                 .assertThat()
+                .statusCode(SC_OK)
+                .and()
                 .body("success", is(true))
                 .body("orders", notNullValue())
                 .body("orders.ingredients[0]", notNullValue())
@@ -90,7 +94,7 @@ public class OrderMethods extends SettingsRequest {
                 .body("orders.updatedAt[0]", notNullValue())
                 .body("total", greaterThan(0))
                 .body("totalToday", greaterThan(0));
-        for (int i = 0; i < order.getIngredients().size(); i++) {
+        for (int i = 0; i < order.getIngredients().size(); i++) {                               //проверка всех ингредиентов
             response
                     .then()
                     .assertThat()

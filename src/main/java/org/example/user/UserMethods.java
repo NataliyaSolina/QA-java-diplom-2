@@ -31,8 +31,8 @@ public class UserMethods extends SettingsRequest {
         response
                 .then()
                 .assertThat()
-//                .statusCode(SC_CREATED)
-//                .and()
+                .statusCode(SC_OK)
+                .and()
                 .body("success", is(true))
                 .body("user.email", equalTo(user.getEmail().toLowerCase()))
                 .body("user.name", equalTo(user.getName()))
@@ -86,6 +86,8 @@ public class UserMethods extends SettingsRequest {
         response
                 .then()
                 .assertThat()
+                .statusCode(SC_OK)
+                .and()
                 .body("success", is(true))
                 .body("user.email", equalTo(user.getEmail().toLowerCase()))
                 .body("user.name", equalTo(user.getName()))
@@ -131,6 +133,8 @@ public class UserMethods extends SettingsRequest {
         response
                 .then()
                 .assertThat()
+                .statusCode(SC_ACCEPTED)
+                .and()
                 .body("success", is(true))
                 .body("message", notNullValue());
     }
@@ -184,6 +188,8 @@ public class UserMethods extends SettingsRequest {
         response
                 .then()
                 .assertThat()
+                .statusCode(SC_OK)
+                .and()
                 .body("success", is(true))
                 .body("user.email", equalTo(user.getEmail().toLowerCase()))
                 .body("user.name", equalTo(user.getName()));
