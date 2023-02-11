@@ -31,7 +31,7 @@ public class AuthUserTest {
     }
 
     @Test
-    @Description("логин под существующим пользователем")
+    @Description("Логин под существующим пользователем")
     public void authUserValidDataRezultOk() {
         response = method.requestAuthUser(cred);
         method.responseAuthUserOk(response, user);

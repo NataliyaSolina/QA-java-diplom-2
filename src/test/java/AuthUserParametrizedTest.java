@@ -62,7 +62,7 @@ public class AuthUserParametrizedTest {
     }
 
     @Test
-    @Description("логин с неверным логином и паролем")
+    @Description("Логин с неверным логином и паролем")
     public void authUserInvalideDataRezultAuthError() {
         response = method.requestAuthUser(cred);
         method.responseAuthInvalideData(response);

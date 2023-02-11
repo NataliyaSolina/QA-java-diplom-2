@@ -24,14 +24,9 @@ public class GetOrderForUserTest {
     public void setUp() {
         user = generator.def();
 
-        response = methodUser.requestAuthUser(Credentials.from(user));  //попробовать залогинется и если ок удалить
-        if (response.statusCode() == SC_OK) {
-            token = methodUser.getTokenFromAuthUserOk(response);
-            methodUser.requestDeleteUser(token);
-        }
-
-        response = methodUser.requestRegisterUser(user);
-        token = methodUser.getTokenFromRegisterUser(response);
+        methodUser.requestRegisterUser(user);                           //если уже есть то токен тут не получить, нужно авторизоваться
+        response = methodUser.requestAuthUser(Credentials.from(user));
+        token = methodUser.getTokenFromAuthUserOk(response);
 
         ingrediets = List.of(Ingredients.BULKA_FLUORESCENT.getHeshId(), Ingredients.MEAT_SHELLFISH.getHeshId(), Ingredients.RINGS_MINERAL.getHeshId(), Ingredients.CHEESE_MOLD.getHeshId(), Ingredients.SAUSE_SPICY.getHeshId());
         order = new Order(ingrediets);
@@ -41,7 +36,7 @@ public class GetOrderForUserTest {
 
     @After
     public void cleanUp() {
-        response = methodUser.requestAuthUser(Credentials.from(user));  //попробовать залогинется и если ок удалить
+        response = methodUser.requestAuthUser(Credentials.from(user));
         if (response.statusCode() == SC_OK) {
             token = methodUser.getTokenFromAuthUserOk(response);
             methodUser.requestDeleteUser(token);
@@ -58,7 +53,7 @@ public class GetOrderForUserTest {
     @Test
     @Description("Получение заказов конкретного пользователя без авторизации")
     public void getUserOrdersWithoutAuthResultAuthError() {
-        token= null;
+        token = null;
         response = methodOrder.requestGetUserOrders(token);
         methodOrder.responseGetUserOrdersWithoutAuth(response);
     }

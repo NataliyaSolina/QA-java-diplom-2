@@ -42,7 +42,7 @@ public class RegisterUserParametrizedTest {
     public void setUp() {
         user = new User(email, password, name);
 
-        response = method.requestAuthUser(Credentials.from(user));  //TODO +попробовать залогинется и если ок удалить
+        response = method.requestAuthUser(Credentials.from(user));  //попробовать залогинется и если ок удалить
         if (response.statusCode() == SC_OK) {
             token = method.getTokenFromAuthUserOk(response);
             method.requestDeleteUser(token);
@@ -51,7 +51,7 @@ public class RegisterUserParametrizedTest {
 
     @After
     public void cleanUp() {
-        response = method.requestAuthUser(Credentials.from(user));  //TODO +попробовать залогинется и если ок удалить
+        response = method.requestAuthUser(Credentials.from(user));
         if (response.statusCode() == SC_OK) {
             token = method.getTokenFromAuthUserOk(response);
             method.requestDeleteUser(token);

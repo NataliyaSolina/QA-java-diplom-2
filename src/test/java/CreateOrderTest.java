@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.apache.http.HttpStatus.SC_OK;
 
-public class CreateOrderTest{
+public class CreateOrderTest {
     UserMethods methodUser = new UserMethods();
     OrderMethods methodOrder = new OrderMethods();
     UserGen generator = new UserGen();
@@ -24,19 +24,14 @@ public class CreateOrderTest{
     public void setUp() {
         user = generator.def();
 
-        response = methodUser.requestAuthUser(Credentials.from(user));  //попробовать залогинется и если ок удалить
-        if (response.statusCode() == SC_OK) {
-            token = methodUser.getTokenFromAuthUserOk(response);
-            methodUser.requestDeleteUser(token);
-        }
-
-        response = methodUser.requestRegisterUser(user);
-        token = methodUser.getTokenFromRegisterUser(response);
+        methodUser.requestRegisterUser(user);                           //если уже есть то токен тут не получить, нужно авторизоваться
+        response = methodUser.requestAuthUser(Credentials.from(user));
+        token = methodUser.getTokenFromAuthUserOk(response);
     }
 
     @After
     public void cleanUp() {
-        response = methodUser.requestAuthUser(Credentials.from(user));  //попробовать залогинется и если ок удалить
+        response = methodUser.requestAuthUser(Credentials.from(user));
         if (response.statusCode() == SC_OK) {
             token = methodUser.getTokenFromAuthUserOk(response);
             methodUser.requestDeleteUser(token);

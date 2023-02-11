@@ -25,7 +25,7 @@ public class ChangeUserParametrizedTest {
 
     @Parameterized.Parameters(name = "creds - {0}")
     public static Object[][] getTextData() {
-        return new Object[][]{                          //TODO сделать рандомом? String.format
+        return new Object[][]{
                 {String.format("{\"email\": \"%s\"}", EMAIL)},
                 {String.format("{\"password\": \"%s\"}", PASSWORD)},
                 {String.format("{\"name\": \"%s\"}", NAME)},
@@ -36,7 +36,7 @@ public class ChangeUserParametrizedTest {
 
     @Before
     public void setUp() {
-        user = new User(EMAIL, PASSWORD, NAME);                                     //удалить юзера с емаилом на который менять
+        user = new User(EMAIL, PASSWORD, NAME);                                     //удалить юзера с емаилом на который менять если есть
         response = method.requestAuthUser(Credentials.from(user));
         if (response.statusCode() == SC_OK) {
             token = method.getTokenFromAuthUserOk(response);

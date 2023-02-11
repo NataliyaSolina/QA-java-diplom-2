@@ -27,7 +27,7 @@ public class RegisterUserTest {
 
     @After
     public void cleanUp() {
-        response = method.requestAuthUser(Credentials.from(user));  //попробовать залогинется и если ок удалить
+        response = method.requestAuthUser(Credentials.from(user));
         if (response.statusCode() == SC_OK) {
             token = method.getTokenFromAuthUserOk(response);
             method.requestDeleteUser(token);
@@ -35,7 +35,7 @@ public class RegisterUserTest {
     }
 
     @Test
-    @Description("создать уникального пользователя")
+    @Description("Создание уникального пользователя")
     public void registerUserValidDataRezultOk() {
         response = method.requestRegisterUser(user);
         method.responseRegisterUserOk(response, user);
@@ -43,7 +43,7 @@ public class RegisterUserTest {
     }
 
     @Test
-    @Description("создать пользователя, который уже зарегистрирован")
+    @Description("Создание пользователя, который уже зарегистрирован")
     public void registerUserNotUniqueDataRezultExistsError() {
         method.requestRegisterUser(user);
 
