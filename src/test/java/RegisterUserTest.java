@@ -51,4 +51,4 @@ public class RegisterUserTest {
         method.responseRegisterUserNotUniqueData(response);
     }
 }
-//для проверки
+//для проверки1
