@@ -54,7 +54,7 @@ public class UserMethods extends SettingsRequest {
                 .statusCode(SC_FORBIDDEN)
                 .and()
                 .body("success", is(false))
-                .body("message", CoreMatchers.equalTo("User already exists"));
+                .body("message", CoreMatchers.equalTo("00User already exists"));
     }
 
     @Step("Receive POST response MissingField to /api/auth/register")
